@@ -1,63 +1,35 @@
 "use strict";
 
-$(document).ready(function () {
-
   /** ========================
   * モーダル: 今回の課題
   ========================= */
 
-  const modalControls = [
-    {
-      closeButton: document.querySelector('#modal1 .close-button'),
-      close: document.querySelector('#modal1 .close'),
-      modal: document.getElementById('modal1'),
-      mask: document.getElementById('mask1'),
-      newsContentBox: document.getElementById('newsContentBox1'),
-    },
-    {
-      closeButton: document.querySelector('#modal2 .close-button'),
-      close: document.querySelector('#modal2 .close'),
-      modal: document.getElementById('modal2'),
-      mask: document.getElementById('mask2'),
-      newsContentBox: document.getElementById('newsContentBox2'),
-    },
-    {
-      closeButton: document.querySelector('#modal3 .close-button'),
-      close: document.querySelector('#modal3 .close'),
-      modal: document.getElementById('modal3'),
-      mask: document.getElementById('mask3'),
-      newsContentBox: document.getElementById('newsContentBox3'),
-    }
-  ];
+  const modalButton = document.querySelector(".js-modal-button")
+  const modalContent = document.querySelector(".js-modal-contents")
+  const modalMask = document.querySelector(".js-modal-mask")
+  const modalClose = document.querySelector(".js-close-button")
+  const body = document.querySelector("body")
+  
+  modalButton.addEventListener("click", () => {
+    modalContent.classList.toggle("is-modal-open")
+    modalMask.classList.toggle("is-modal-open")
+    body.classList.toggle("is-modal-open")
+  })
+  
+  modalClose.addEventListener("click", () => {
+    modalContent.classList.remove("is-modal-open")
+    modalMask.classList.remove("is-modal-open")
+    body.classList.remove("is-modal-open")
+  })
+  
+  modalMask.addEventListener("click", () => {
+    modalContent.classList.remove("is-modal-open")
+    modalMask.classList.remove("is-modal-open")
+    body.classList.remove("is-modal-open")
+  })
 
-  modalControls.forEach(control => {
-    // 要素が存在するか確認（モーダルがないページで他のJavaScriptが停止しないように）
-    if (control.newsContentBox && control.modal && control.mask) {
-      // モーダルを表示
-      control.newsContentBox.addEventListener('click', function () {
-        control.modal.classList.remove('hidden');
-        control.mask.classList.remove('hidden');
-      });
+  /* モーダル終了 */
 
-      // close-buttonでモーダルを閉じる
-      if (control.closeButton) {
-        control.closeButton.addEventListener('click', function (event) {
-          event.stopPropagation();
-          control.modal.classList.add('hidden');
-          control.mask.classList.add('hidden');
-        });
-      }
-
-      // closeでモーダルを閉じる
-      if (control.close) {
-        control.close.addEventListener('click', function (event) {
-          event.stopPropagation();
-          control.modal.classList.add('hidden');
-          control.mask.classList.add('hidden');
-        });
-      }
-    }
-  });
 
 
 
@@ -91,4 +63,3 @@ $(document).ready(function () {
       }
     });
   });
-});

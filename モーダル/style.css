@@ -516,10 +516,29 @@ a {
   z-index: 11;
 }
 
-/* hiddenクラスはモーダルとマスクが非表示になるために使います */
-.hidden {
-  display: none;
+/* ------------------------今井さん添削------------------------ */
+
+.modal-contents,.modal-mask {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 1s, opacity 1s;
 }
+
+.modal-contents.is-modal-open {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-mask.is-modal-open {
+  visibility: visible;
+  opacity: 1;
+}
+
+body.is-modal-open {
+  overflow: hidden;
+}
+
+/* ------------------------今井さん添削終了------------------------ */
 
 .news__content-text_modal{
   margin-top: 16px;
@@ -582,7 +601,6 @@ a {
   transform: translate(-50%, -50%) rotate(-45deg); /* -45度回転 */
 }
 
-/* 1340pxでフッターのプラスボタンが */
 
 
 /* ーーーー */
@@ -633,8 +651,6 @@ a {
 .contact__content-box1, .contact__content-box2 {
   border-right: 1px solid #000000;
 }
-
-
 
 .contact__content-box1{
   margin-left: 24px;
@@ -693,7 +709,6 @@ a {
   height: auto;
   object-fit: contain; /* 画像のサイズが変更されても比率を維持 */
 }
-
 
 .contact__content-mail{
   font-weight: bold;
