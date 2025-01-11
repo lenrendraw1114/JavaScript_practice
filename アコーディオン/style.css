@@ -1,0 +1,83 @@
+@charset "UTF-8";
+
+.qa {
+  margin: 40px;
+}
+
+.qa__title{
+  padding-left: 40px;
+}
+
+.qa__block {
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+}
+
+
+.qa__item {
+  display: inline-block;
+
+}
+
+.qa__question {
+
+  position: relative;
+  text-align: left;
+  padding: 20px 30px 20px 20px;
+  border-radius: 8px 8px 0 0;
+  background: lightblue;
+  color: black;
+  cursor: pointer;
+  width: 100%;
+}
+
+.qa__question:after {
+  content: "";
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  transform: rotate(-135deg) translateY(9px);
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transition: transform .4s;
+}
+
+.qa__answer {
+  position: relative;
+  border-radius: 0 0 8px 8px;
+  background: #fff;
+  color: black;
+  border: transparent;
+  padding: 0 20px;
+  line-height: 0;
+  opacity: 0;/* 要素の透明度を0に設定し、完全に非表示 */
+  transition: line-height 0.4s, padding 0.4s, opacity 0.4s;
+}
+
+/* ーーーー */
+/* アコーディオン */
+/* JavaScriptで付与したクラスis-openの部分 */
+/* ーーーー */
+
+/* .qa__answerの.is-open クラスが追加された要素 */
+.qa__answer.is-open {
+  padding: 20px;
+  line-height: 1.5;
+  opacity: 1;/* 要素の透明度を1に設定し、完全に表示 */
+  border: 1px solid lightblue;/* 境界線でコンテンツを目立たせる */
+}
+
+/* .qa__questionの.is-openクラスが追加された要素 */
+/* `::after` 擬似要素のtransformプロパティを使って、回転させる */
+.qa__question.is-open::after {
+  transform: rotate(45deg) translateY(-10px);/* 45度回転させ、少し上に移動させることで矢印を作成 */
+}
+
+/* .qa__item 要素の中で、最初の子でない要素に対して適用 */
+.qa__item:not(:first-child) {
+  margin-top: 16px;/* 展開したqa__answer部分が、下の別項目にくっつかないように空ける */
+}
