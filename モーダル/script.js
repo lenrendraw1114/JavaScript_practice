@@ -7,7 +7,7 @@
   const modalButton = document.querySelector(".js-modal-button")
   const modalContent = document.querySelector(".js-modal-contents")
   const modalMask = document.querySelector(".js-modal-mask")
-  const modalClose = document.querySelector(".js-close-button")
+  const modalClose = document.querySelectorAll(".js-close-button")
   const body = document.querySelector("body")
   
   modalButton.addEventListener("click", () => {
@@ -16,10 +16,13 @@
     body.classList.toggle("is-modal-open")
   })
   
-  modalClose.addEventListener("click", () => {
-    modalContent.classList.remove("is-modal-open")
-    modalMask.classList.remove("is-modal-open")
-    body.classList.remove("is-modal-open")
+  // 複数件取れるため、繰り返し処理で中の要素に対いてaddEventListenerする
+  modalClose.forEach((modalClose) => {
+    modalClose.addEventListener("click", () => {
+      modalContent.classList.remove("is-modal-open")
+      modalMask.classList.remove("is-modal-open")
+      body.classList.remove("is-modal-open")
+    })
   })
   
   modalMask.addEventListener("click", () => {
