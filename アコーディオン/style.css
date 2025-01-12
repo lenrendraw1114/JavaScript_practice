@@ -53,9 +53,11 @@
   color: black;
   border: transparent;
   padding: 0 20px;
-  line-height: 0;
+  line-height: 1.5;/* （今井さん添削：追加） */
+  height: 0;
+  overflow: hidden;/* （今井さん添削：追加） */
   opacity: 0;/* 要素の透明度を0に設定し、完全に非表示 */
-  transition: line-height 0.4s, padding 0.4s, opacity 0.4s;
+  transition:  padding 0.4s, opacity 0.4s, height 0.4s, border 0.4s;
 }
 
 /* ーーーー */
@@ -66,7 +68,6 @@
 /* .qa__answerの.is-open クラスが追加された要素 */
 .qa__answer.is-open {
   padding: 20px;
-  line-height: 1.5;
   opacity: 1;/* 要素の透明度を1に設定し、完全に表示 */
   border: 1px solid lightblue;/* 境界線でコンテンツを目立たせる */
 }

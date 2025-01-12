@@ -2,28 +2,46 @@
 //    これでアコーディオンのボタン全体を操作できるようにする。
 const question = document.querySelectorAll(".js-ac");
 
-// 2. ボタンがクリックされた時に開閉を制御する関数を作る。
-function acToggle() {
-  // this：現在の要素(5.で選択されるクリックされたボタン)
-  // closestメソッドを使うことで、現在の要素（this）から親要素を遡って、
-  // その親要素の中でqa__item（項目部分.qa__item）というクラスを持つ最初の要素を要素を返す。
 
-  const item = this.closest(".qa__item"); // クリックされたボタンの親要素 .qa__item を取得
-  // 次に、その親要素内で .qa__answer クラスを持つ要素を取得。
-  // .qa__item の中にある .qa__answer を選択することで、アコーディオンの回答部分をターゲットにする。
-  const answer = item.querySelector(".qa__answer"); // 親要素内の .qa__answer を取得
 
-  // 3. コンテンツを開け閉めする。
-  // is-openクラスで表示/非表示を切り替え。
-  // toggle：あるクラスが要素に存在する場合はそのクラスを削除し、存在しない場合は追加するとメソッド。
+// 2. クリックされたボタンに応じてアコーディオンの開閉を制御する関数
+const acToggle = (event) => {
+  // 3. 現在クリックされたボタンの要素を取得
+  // event.currentTargetはイベントが発生した要素（この場合はボタン）
+  const button = event.currentTarget;
+
+  // 4. クリックされたボタンの親要素で、.js-itemクラスを持つ要素を探す
+  // closest()メソッドは、現在の要素から親要素を遡って指定されたセレクタに一致する最初の要素を取得する
+  // この場合、アコーディオン全体を包む要素（.js-item）を取得する
+  const item = button.closest(".js-item");
+  // 5. 親要素 (.js-item) 内にある .js-answer 要素を取得
+  // querySelector()は指定したセレクタに一致する最初の子要素を取得する
+  // ここでは、アコーディオンの「回答部分」にあたる .js-answer を取得する
+  const answer = item.querySelector(".js-answer");
+
+  // 6. アコーディオンの開閉を切り替える
+  // classList.toggle()を使って、.is-openクラスを追加・削除する
+  // .is-openが追加されると「開く」動作になり、削除されると「閉じる」動作になる
   answer.classList.toggle("is-open");
+  // 7. クリックされたボタン自体の状態を切り替える
+  // ボタンの見た目（スタイル）を変化させるため、ボタンにも.is-openクラスを付けたり外したりする
+  button.classList.toggle("is-open");
 
-  // 4. ボタン自体も開閉状態を切り替える。
-  // 見た目に変化をつけるためにクラスを追加/削除。
-  this.classList.toggle('is-open');
-}
+  // 8. アコーディオンの高さを設定
+  // アコーディオンが開く場合（.is-openが付いた場合）はコンテンツの高さを計算して設定する
+  // scrollHeightプロパティは、要素内のコンテンツ全体の高さを取得する
+  if (answer.classList.contains("is-open")) {
+    // 高さをコンテンツ全体の高さ（scrollHeight）に設定してアニメーションで開く
+    answer.style.height = `${answer.scrollHeight}px`;
+  } else {
+    // アコーディオンを閉じる場合、高さを0に設定して非表示にする
+    answer.style.height = 0;
+  }
+};
 
-// 5. 関数完成後、全てのボタンに対してクリックイベントを設定する。
+
+
+// 9. 関数完成後、全てのボタンに対してクリックイベントを設定する。
 //    クリックされたら「acToggle」関数を呼び出す。
 question.forEach(button => {
   button.addEventListener("click", acToggle);
