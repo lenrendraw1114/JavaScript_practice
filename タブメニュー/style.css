@@ -1,0 +1,97 @@
+.tab {
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 120px;
+}
+
+/* ーーーー */
+/* タブメニュー */
+/* ーーーー */
+
+.tab__menu {
+  display: flex;
+  column-gap: 6px;
+  align-items: flex-end; /* メニューを下揃え&高さを調整 */
+  justify-content: center;
+  min-height: 50px; /* メニュー切替時にタブがズレないように */
+  padding: 0;
+  margin: 0;
+}
+
+.tab__menu-item {
+  list-style: none;/* マーカー「・」削除 */
+  width: 200px;
+  padding: 8px 5px; /* メニューに高さを付ける */
+  text-align: center;
+  background-color: #cdcdcd;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  transition: all .3s; /* アニメーション */
+  /* 【UX改善】メニュー項目にマウスカーソルが重なったとき、ポインター（手のアイコン）を表示。
+  クリック可能な要素であることを視覚的に示す。 */
+  cursor: pointer;
+}
+
+/* is-activeがついている時のスタイル */
+.tab__menu-item.is-active {
+  background-color: rgba(48, 172, 249, 1); /* はっきりしたブルー */
+  color: #ffffff; /* 白色の文字 */
+  padding: 12px 5px; /* 高さを少し広げて目立たせる */
+}
+/* 【UX改善】タブメニューをホバー時に色を変化して視覚的なフィードバックを与える。
+  インタラクティブ性を向上 */
+.tab__menu-item:hover {
+  background-color: rgba(48, 172, 249, 0.7); /* 少し薄いブルー */
+  color: #ffffff; /* 白色の文字 */
+}
+/* 【UX改善】タブメニューのフォーカススタイルを追加し、キーボード操作時フォーカス中のタブメニューが明確に分かるようにする。
+  アクセシビリティを向上 */
+.tab__menu-item:focus {
+  box-shadow: 2px 0 0 #fff, /* 右側の線 */
+              -2px 0 0 #fff, /* 左側の線 */
+              0 -2px 0 #fff, /* 上側の線 */
+              4px 0 0 #30acf9, /* 右側の線 */
+              -4px 0 0 #30acf9, /* 左側の線 */
+              0 -4px 0 #30acf9; /* 上側の線 */
+  outline: none; /* デフォルトのアウトラインを削除 */
+}
+
+
+/* ーーーー */
+/* タブパネル */
+/* ーーーー */
+
+.tab__panel {
+  width: 100%;
+  }
+  
+.tab__panel-box {
+  /* display:noneはアニメーション付かない。visibilityを使う */
+  visibility: hidden; /* 初期状態で要素を見えなくする */
+  opacity: 0; /* 完全に透明に設定 */
+  position: absolute; /* レイアウトを崩さないために絶対位置を設定 */
+  transition: opacity 0.3s ease, visibility 0.3s ease; /* 滑らかなアニメーション */
+  min-height: 400px; /* テキスト量が多くなっても対応できるように */
+  padding: 10px 30px;
+  border-radius: 10px;
+}
+
+.tab__panel-box001 {
+  background-color: rgb(205, 246, 246);
+}
+
+.tab__panel-box002 {
+  background-color: rgb(249 227 243);
+}
+
+.tab__panel-box003 {
+  background-color: rgb(200, 248, 195);
+}
+
+/* is-showがついている時のスタイル */
+.tab__panel-box.is-show {
+  /* display:noneはアニメーション付かない。visibilityを使う */
+  visibility: visible; /* 表示状態 */
+  opacity: 1; /* 完全に不透明に */
+  position: static; /* 通常の位置に戻す */
+}
