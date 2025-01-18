@@ -12,8 +12,12 @@
   })
 
   // イベントの処理
+  // ※e は、イベントオブジェクト
+  // イベントが発生したときにブラウザから自動的に渡され、イベントに関する情報を提供
   function tabSwitch(e) {
     // クリックされた要素のデータ属性を取得
+    // （e.currentTarget: イベントが現在処理されている要素（クリックされた要素））
+    // （.dataset: data属性にアクセスするためのプロパティ）
     const tabTargetData = e.currentTarget.dataset.tab;
 
 

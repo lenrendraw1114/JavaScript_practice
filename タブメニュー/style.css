@@ -69,7 +69,7 @@
   /* display:noneはアニメーション付かない。visibilityを使う */
   visibility: hidden; /* 初期状態で要素を見えなくする */
   opacity: 0; /* 完全に透明に設定 */
-  position: absolute; /* レイアウトを崩さないために絶対位置を設定 */
+  position: absolute; /* 非表示状態の要素が周囲のレイアウトに影響を与えないようにする。 */
   transition: opacity 0.3s ease, visibility 0.3s ease; /* 滑らかなアニメーション */
   min-height: 400px; /* テキスト量が多くなっても対応できるように */
   padding: 10px 30px;
@@ -93,5 +93,5 @@
   /* display:noneはアニメーション付かない。visibilityを使う */
   visibility: visible; /* 表示状態 */
   opacity: 1; /* 完全に不透明に */
-  position: static; /* 通常の位置に戻す */
+  position: static; /* 通常のフローに戻し、他の要素と一緒に自然に並ぶようにする */
 }
