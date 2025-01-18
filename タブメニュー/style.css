@@ -18,7 +18,7 @@
   margin: 0;
 }
 
-.tab__menu-item {
+.tab__menu-button {
   list-style: none;/* マーカー「・」削除 */
   width: 200px;
   padding: 8px 5px; /* メニューに高さを付ける */
@@ -32,28 +32,24 @@
   cursor: pointer;
 }
 
-/* is-activeがついている時のスタイル */
-.tab__menu-item.is-active {
+/* tab__menu-selectedがついている時のスタイル */
+.tab__menu-button.tab__menu-selected {
   background-color: rgba(48, 172, 249, 1); /* はっきりしたブルー */
   color: #ffffff; /* 白色の文字 */
   padding: 12px 5px; /* 高さを少し広げて目立たせる */
 }
 /* 【UX改善】タブメニューをホバー時に色を変化して視覚的なフィードバックを与える。
   インタラクティブ性を向上 */
-.tab__menu-item:hover {
+.tab__menu-button:hover {
   background-color: rgba(48, 172, 249, 0.7); /* 少し薄いブルー */
   color: #ffffff; /* 白色の文字 */
 }
 /* 【UX改善】タブメニューのフォーカススタイルを追加し、キーボード操作時フォーカス中のタブメニューが明確に分かるようにする。
   アクセシビリティを向上 */
-.tab__menu-item:focus {
-  box-shadow: 2px 0 0 #fff, /* 右側の線 */
-              -2px 0 0 #fff, /* 左側の線 */
-              0 -2px 0 #fff, /* 上側の線 */
-              4px 0 0 #30acf9, /* 右側の線 */
-              -4px 0 0 #30acf9, /* 左側の線 */
-              0 -4px 0 #30acf9; /* 上側の線 */
-  outline: none; /* デフォルトのアウトラインを削除 */
+  .tab__menu-button:focus {
+    outline: none; /* ブラウザがデフォルトで表示するフォーカス枠（outline）を無効化し、カスタムスタイルを適用 */
+    border: 8px white double; /* 白い二重線の枠を設定 */
+    border-bottom: none; /* タブパネルに干渉しないよう下線削除 */
 }
 
 
@@ -88,8 +84,8 @@
   background-color: rgb(200, 248, 195);
 }
 
-/* is-showがついている時のスタイル */
-.tab__panel-box.is-show {
+/* tab__panel-visibleがついている時のスタイル */
+.tab__panel-box.tab__panel-visible {
   /* display:noneはアニメーション付かない。visibilityを使う */
   visibility: visible; /* 表示状態 */
   opacity: 1; /* 完全に不透明に */

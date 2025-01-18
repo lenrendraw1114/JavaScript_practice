@@ -2,65 +2,70 @@
 
 { /* ローカルスコープ */
 
-  // DOM取得
-  const tabMenus = document.querySelectorAll('.tab__menu-item');
-  // (動作してるか確認したい際はconsole.log(tabMenus);記述)
+  // 1,DOM取得
+  // ※まず「DOMツリー全体」に対してアクセスを行い、そこから目的の要素を探している。
+  const allTabButtons = document.querySelectorAll('.js-tab__menu-button');
+  // (動作してるか確認したい際はここにconsole.log(allTabButtons);記述)
 
-  // イベント付加
-  tabMenus.forEach((tabMenu) => {
-    tabMenu.addEventListener('click', tabSwitch);
+
+
+  // 2,イベント付加
+  // 取得した全てのタブメニューボタン要素にクリックイベント追加
+  // click：ボタンがクリックされたときに発生するイベント。
+  allTabButtons.forEach((tabButton) => {
+    tabButton.addEventListener('click', tabSwitch);
   })
 
-  // イベントの処理
+
+
+  // 3,関数作成
+  // イベントの処理(タブ切り替え)
   // ※e は、イベントオブジェクト
   // イベントが発生したときにブラウザから自動的に渡され、イベントに関する情報を提供
   function tabSwitch(e) {
-    // クリックされた要素のデータ属性を取得
+    // 4,クリックされた要素のデータ属性を取得
     // （e.currentTarget: イベントが現在処理されている要素（クリックされた要素））
     // （.dataset: data属性にアクセスするためのプロパティ）
-    const tabTargetData = e.currentTarget.dataset.tab;
+    const clickedTabId = e.currentTarget.dataset.tab;
 
 
 
-    // クリックされた要素の親要素と、その子要素を取得
-    // closestで親要素取得
-    const tabList = e.currentTarget.closest('.tab__menu');
-    console.log(tabList);
-    // querySelectorAllで、子要素のtab__menu-itemをすべて取得
-    const tabItems = tabList.querySelectorAll('.tab__menu-item');
-    console.log(tabItems);
-
-
-
+    // 5,クリックされた要素の親要素と、その子要素を取得
+    // closestでクリックされた要素の親要素
+    const clikedTabMenu = e.currentTarget.closest('.js-tab__menu');
+    console.log(clikedTabMenu);
+    // querySelectorAllで、子要素のjs-tab__menu-buttonをすべて取得
+    const clickedAllTabButtons = clikedTabMenu.querySelectorAll('.js-tab__menu-button');
+    console.log(clickedAllTabButtons);
     // クリックされた要素の親要素の兄弟要素の子要素を取得
-    const tabPanelItems = tabList.
-    // nextElementSiblingで兄弟要素を取得
-    nextElementSibling.querySelectorAll('.tab__panel-box');
-    console.log(tabPanelItems);
+    // nextElementSiblingで兄弟要素(次の隣の要素)を取得
+    const clickedAllTabPanels = clikedTabMenu.nextElementSibling.querySelectorAll('.js-tab__panel-box');
+    console.log(clickedAllTabPanels);
 
 
 
-    // クリックされたtabの同階層のmenuとpanelのクラスを削除
-    // ※ここで一旦表示するクラス（is-activeとis-show）を全部削除する
-    // forEach文で、tabItems（タブメニュー）から一つずつ取り出し、「is-active」のクラスが付いていたら、削除する
-    tabItems.forEach((tabItem) => {
-      tabItem.classList.remove('is-active');
+    // 6,クリックされたtabの同階層のmenuとpanelのクラスを削除
+    // ※ここで一旦表示するクラス（tab__menu-selectedとtab__panel-visible）を全部削除する
+    // ※他のクリックされてないtabには適応しない
+    // forEach文で、clickedAllTabButtons（タブメニューボタン）から一つずつ取り出し、「tab__menu-selected」のクラスが付いていたら、削除する
+    clickedAllTabButtons.forEach((clickedTabMenu) => {
+      clickedTabMenu.classList.remove('tab__menu-selected');
     })
-    // forEach文で、tabPanelItems（タブパネル）から一つずつ取り出し、「is-show」クラスを削除
-    tabPanelItems.forEach((tabPanelItem) => {
-      tabPanelItem.classList.remove('is-show');
+    // forEach文で、clickedAllTabPanels（タブパネル）から一つずつ取り出し、「tab__panel-visible」クラスを削除
+    clickedAllTabPanels.forEach((clickedTabPanel) => {
+      clickedTabPanel.classList.remove('tab__panel-visible');
     })
 
 
 
-    // クリックされたmenu要素にis-activeクラスを付加
-    // ※ここでクリックされた箇所だけに表示するクラス（is-activeとis-show）をつける
-    e.currentTarget.classList.add('is-active');
-    // forEach文で、tabPanelItems（タブパネル）から一つずつ取り出し
-    tabPanelItems.forEach((tabPanelItem) => {
-    // クリックしたmenuのデータ属性と等しい値を持つパネルにis-showクラスを付加
-    if (tabPanelItem.dataset.panel ===  tabTargetData) {
-      tabPanelItem.classList.add('is-show');
+    // 7,クリックイベントが発生したメニューボタンのクラスに、tab__menu-selectedクラスを付加
+    // ※ここでクリックされた箇所だけに表示するクラス（tab__menu-selectedとtab__panel-visible）をつける
+    e.currentTarget.classList.add('tab__menu-selected');
+    // forEach文で、clickedAllTabPanels（タブパネル）から一つずつ取り出し
+    clickedAllTabPanels.forEach((clickedTabPanel) => {
+    // クリックされたメニューボタンのデータ属性と、等しい値を持つパネルのクラス にtab__panel-visibleクラスを付加
+    if (clickedTabPanel.dataset.panel ===  clickedTabId) {
+      clickedTabPanel.classList.add('tab__panel-visible');
     }
   })
 
