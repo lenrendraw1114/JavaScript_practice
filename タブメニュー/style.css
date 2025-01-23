@@ -8,12 +8,13 @@
 /* タブメニュー */
 /* ーーーー */
 
+
 .tab__menu {
   display: flex;
   column-gap: 6px;
   align-items: flex-end; /* メニューを下揃え&高さを調整 */
   justify-content: center;
-  min-height: 50px; /* メニュー切替時にタブがズレないように */
+  height: 50px; /* メニュー切替時にタブがズレないように */
   padding: 0;
   margin: 0;
 }
@@ -58,7 +59,9 @@
 /* ーーーー */
 
 .tab__panel {
+  position: relative;
   width: 100%;
+  min-height: 400px; /* テキスト量が多くなっても対応できるように */
   }
   
 .tab__panel-box {
@@ -67,9 +70,9 @@
   opacity: 0; /* 完全に透明に設定 */
   position: absolute; /* 非表示状態の要素が周囲のレイアウトに影響を与えないようにする。 */
   transition: opacity 0.3s ease, visibility 0.3s ease; /* 滑らかなアニメーション */
-  min-height: 400px; /* テキスト量が多くなっても対応できるように */
   padding: 10px 30px;
   border-radius: 10px;
+  height: 100%;
 }
 
 .tab__panel-box001 {
@@ -89,5 +92,4 @@
   /* display:noneはアニメーション付かない。visibilityを使う */
   visibility: visible; /* 表示状態 */
   opacity: 1; /* 完全に不透明に */
-  position: static; /* 通常のフローに戻し、他の要素と一緒に自然に並ぶようにする */
 }

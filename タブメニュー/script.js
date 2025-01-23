@@ -5,24 +5,16 @@
   // 1,DOM取得
   // ※まず「DOMツリー全体」に対してアクセスを行い、そこから目的の要素を探している。
   const allTabButtons = document.querySelectorAll('.js-tab__menu-button');
-  // (動作してるか確認したい際はここにconsole.log(allTabButtons);記述)
-
-
-
-  // 2,イベント付加
-  // 取得した全てのタブメニューボタン要素にクリックイベント追加
-  // click：ボタンがクリックされたときに発生するイベント。
-  allTabButtons.forEach((tabButton) => {
-    tabButton.addEventListener('click', tabSwitch);
-  })
-
+  // 2,(動作してるか確認したい際はここにconsole.log(allTabButtons);記述)
+  // ※案件の時は確認したら最後console消しとく
+  // 【重要】複数回使用する場合は、事前に変数作成して、要素を取得し文字列として入れておく
 
 
   // 3,関数作成
   // イベントの処理(タブ切り替え)
   // ※e は、イベントオブジェクト
   // イベントが発生したときにブラウザから自動的に渡され、イベントに関する情報を提供
-  function tabSwitch(e) {
+  const tabSwitch = (e) => {
 
 
 
@@ -73,4 +65,15 @@
   })
 
   }
+
+
+  // 8,イベント付加
+  // 取得した全てのタブメニューボタン要素にクリックイベント追加
+  // click：ボタンがクリックされたときに発生するイベント。
+  allTabButtons.forEach((tabButton) => {
+    tabButton.addEventListener('click', tabSwitch);
+  })
+
+
+
 }
