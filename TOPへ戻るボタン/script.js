@@ -1,5 +1,5 @@
-// セレクタ名（.pagetop）に一致する要素を取得
-const topBtn = document.querySelector(".pagetop");
+// セレクタ名（.js-pagetop）に一致する要素を取得
+const topBtn = document.querySelector(".js-pagetop");
 
 // まず、スクロールされたらボタンを表示
 window.addEventListener("scroll", scroll_event);
@@ -11,7 +11,7 @@ function scroll_event() {
   }
 }
 
-// そして、.pagetopをクリックしたら
+// そして、.js-pagetopをクリックしたら
 topBtn.addEventListener("click", scroll_top);
 
 // ページ上部へスムーズに移動
