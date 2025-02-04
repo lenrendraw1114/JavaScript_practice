@@ -21,7 +21,9 @@ body {
   border-radius: 50%;
   color: #00A6C4;
   background: #fff;
-  opacity: 0;/* デフォルトは非表示（ここをJavaScriptで操作） */
+  opacity: 0; /* デフォルトは非表示 */
+  visibility: hidden; /* デフォルトは見えない */
+  text-decoration: none; /* デフォルトで下線を消す */
 
 /* （パフォーマンスとUXを考慮する場合、transition の詳細指定（opacity, visibility）を明確にした方が望ましい。） */
   transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -29,6 +31,11 @@ body {
 /* 【UX改善】ボタンのヒットエリアを拡大し、押しやすくする。
   操作性の向上 */
   padding: 10px;
+}
+
+.pagetop.is-show {
+  opacity: 1;
+  visibility: visible;
 }
 
 /* 【UX改善】タブメニューをホバー時に影を与えて視覚的なフィードバックを与える。
@@ -47,3 +54,4 @@ body {
 全体的に同じタイミングでシンプルなアニメーションを適用したい場合。
 ・細かく制御したい場合 → transition: opacity 0.3s ease, visibility 0.3s ease;
 アニメーションの対象を明確にし、適切な動作とパフォーマンスを最適化したい場合。 */
+

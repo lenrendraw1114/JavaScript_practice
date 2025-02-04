@@ -1,3 +1,9 @@
+// ===============================
+// 設定（マジックナンバーを変数化）
+// ===============================
+const scrollThreshold = 100; // ボタンを表示するスクロール位置（px）
+const debounceDelay = 200;   // debounceの遅延時間（ms）
+
 // セレクタ名（.js-pagetop）に一致する要素を取得
 // ページトップに戻るボタンを取得
 const topBtn = document.querySelector(".js-pagetop");
@@ -17,23 +23,19 @@ const debounce = (func, delay) => {
 // スクロールイベントの処理（ページのスクロール位置に応じてボタンの表示を切り替える）
 const scrollEvent = () => {
   // 画面のスクロール量（window.scrollY）が100pxを超えた場合
-  if (window.scrollY > 100) {
-    topBtn.style.opacity = "1";  // ボタンを表示（不透明にする）
-    console.log("ボタンを表示しました");  // デバッグ用メッセージ（開発者向け）
+  if (window.scrollY > scrollThreshold) {
+    topBtn.classList.add("is-show");  // 表示
+    console.log(`ボタンを表示しました（${scrollThreshold}px超え）`);  // デバッグ用メッセージ（開発者向け）
   } else {
-    topBtn.style.opacity = "0";  // ボタンを非表示（透明にする）
-    console.log("ボタンを非表示にしました");  // デバッグ用メッセージ（開発者向け）
+    topBtn.classList.remove("is-show"); // 非表示
+    console.log(`ボタンを非表示にしました（${scrollThreshold}px以下）`);  // デバッグ用メッセージ（開発者向け）
   }
 };
 
 // スクロールイベントを監視し、debounceを適用（200msの遅延）
 // 連続スクロール時に処理を最適化し、負荷を軽減
-// 200ms（0.2秒）は、ユーザー体験（UX）を損なわない程度の遅延
+// 20ms（0.02秒）は、ユーザー体験（UX）を損なわない程度の遅延
 // ※必ず使う関数を宣言したあとに記述。未定義（undefined）のまま処理されるから
 // ※JavaScriptの「変数の巻き上げ（Hoisting）」について調べる。
-window.addEventListener("scroll", debounce(scrollEvent, 200));
+window.addEventListener("scroll", debounce(scrollEvent, debounceDelay));
 
-// クリックイベントを登録（ボタンがクリックされたとき、ページを最上部へ移動）
-topBtn.addEventListener("click", () => {
-  window.scrollTo(0, 0);  // ページの最上部（座標0,0）へスクロール
-});
