@@ -1,0 +1,57 @@
+html {
+  scroll-behavior: smooth;/* CSSでサイト全体にスムーズ機能（JavaScriptより簡単） */
+}
+
+body {
+  background: #DFEFF2;
+}
+.space {
+  height: 5000px;
+}
+.pagetop {
+  cursor: pointer;
+  position: fixed;/* ビューポート（画面）に対して絶対的な位置が確保 */
+  right: 30px;
+  bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  color: #00A6C4;
+  background: #fff;
+  opacity: 0; /* デフォルトは非表示 */
+  visibility: hidden; /* デフォルトは見えない */
+  text-decoration: none; /* デフォルトで下線を消す */
+
+/* （パフォーマンスとUXを考慮する場合、transition の詳細指定（opacity, visibility）を明確にした方が望ましい。） */
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
+/* 【UX改善】ボタンのヒットエリアを拡大し、押しやすくする。
+  操作性の向上 */
+  padding: 10px;
+}
+
+.pagetop.is-show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 【UX改善】タブメニューをホバー時に影を与えて視覚的なフィードバックを与える。
+  インタラクティブ性を向上 */
+.pagetop:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #00A6C4;
+
+/* （パフォーマンスとUXを考慮する場合、transition の詳細指定（transform, box-shadow）を明確にした方が望ましい。） */
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+  
+
+/* （どちらを使うべきか？）
+・簡単な場合 → transition: .3s;
+全体的に同じタイミングでシンプルなアニメーションを適用したい場合。
+・細かく制御したい場合 → transition: opacity 0.3s ease, visibility 0.3s ease;
+アニメーションの対象を明確にし、適切な動作とパフォーマンスを最適化したい場合。 */
+
