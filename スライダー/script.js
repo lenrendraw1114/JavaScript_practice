@@ -17,7 +17,7 @@ const circlePaginationSwiper = new Swiper('.circlePaginationSlider', {
         disableOnInteraction: false, // ユーザー操作後も自動再生を続行
     },
     pagination: {
-        el: '.swiper-pagination', // ページネーションの要素を指定
+        el: '.js-swiper-pagination', // ページネーションの要素を指定
         clickable: true, // ページネーションをクリック可能にする
         renderBullet: function (index, className) { // ページネーションのカスタマイズ
             let pageNumber = index + 1; // インデックスを1から始まるように調整

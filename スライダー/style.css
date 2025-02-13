@@ -1,16 +1,29 @@
 @charset "utf-8";
 
+
+/* ==========================
+  初期設定（すべての要素の基本スタイルを統一）
+========================== */
+/*参考：SVGでスライダー作成のデモサイト制作者が設定していた初期設定 */
+
+
+/* すべての要素とその疑似要素（before, after）に対して、幅や高さの計算方法を統一する */
+/* これを指定しないと、padding や border の影響で意図しないサイズになることがある */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
+/* リスト（ul, ol）のデフォルトの余白（padding）をなくす */
+/* ブラウザによって余白が異なるため、統一する */
 ul,
 ol {
   padding: 0;
 }
 
+/* よく使う要素のデフォルトの余白（margin）をなくす */
+/* これをしないと、h1 や p などの間に意図しない余白ができる */
 body,
 h1,
 h2,
@@ -26,37 +39,50 @@ dd {
   margin: 0;
 }
 
+/* 画面全体の高さ（縦のサイズ）を最低でも 100% にする */
+/* これを設定しないと、コンテンツが少ないときに背景が途中で途切れる */
 body {
   min-height: 100vh;
 }
 
+/* リスト（ul, ol）のデフォルトのマーク（黒点や番号）をなくす */
+/* 独自のデザインを適用しやすくするため */
 ul,
 ol {
   list-style: none;
 }
 
+/* 画像が親の幅をはみ出さないようにする */
+/* これを指定しないと、大きな画像がはみ出してレイアウトが崩れることがある */
 img {
-  max-width: 100%;
-  display: block;
-  width: 100%;
+  max-width: 100%; /* 親要素の幅に収まるようにする */
+  display: block;   /* インライン要素ではなくブロック要素にする（余白を防ぐため） */
+  width: 100%;      /* 画像の幅を親要素いっぱいにする（レイアウトに応じて調整可） */
 }
 
+/* リンクのデフォルトの装飾（青色や下線）をなくす */
+/* これをしないと、デザインによってはリンクの見た目がバラバラになってしまう */
 a {
   text-decoration: none;
-  color: inherit;
+  color: inherit; /* 親要素の文字色と同じにする */
 }
 
+/* コンテンツを中央に配置するための共通の枠（innerクラス） */
+/* レイアウトの統一のために使う */
 .inner {
-  margin: 100px auto 0;
-  width: min(900px, 100%);
-  padding: 0 25px;
+  margin: 100px auto 0; /* 上に 100px の余白をとり、左右中央に配置 */
+  width: min(900px, 100%); /* 最大 900px、画面幅が小さいときは 100% */
+  padding: 0 25px; /* 左右に 25px の余白をつける（画面端にぴったりつかないように） */
 }
+
 
 /* ==========================
-  Swiperのスタイルを調整
+  Swiperのスタイルを調整（スライダーの基本設定）
 ========================== */
+
+/* スライダー全体のラッパー要素 */
 .wrapper {
-  position: relative;
+  position: relative; /* 内部要素の位置調整のため */
 }
 
 .swiper-slide {
@@ -64,86 +90,99 @@ a {
 }
 
 .swiper-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 100%;  /* 親要素（スライド）の幅いっぱいに */
+  height: 100%; /* 親要素（スライド）の高さいっぱいに */
+  object-fit: cover; /* 画像がスライド全体をカバーするように調整 */
 }
+
 
 /* =============================
     ページネーションの見栄えを調整
 ============================= */
+
+/* ページネーション（ドット部分）のサイズと背景色を調整 */
+/* Swiperのデフォルト設定だと、小さくて見づらいためカスタマイズ */
 .swiper-horizontal>.swiper-pagination-bullets,
 .swiper-pagination-bullets.swiper-pagination-horizontal,
 .swiper-pagination-custom,
 .swiper-pagination-fraction {
   width: 150px;
   background-color: #fff;
-  bottom: 0;
+  bottom: 0; /* 下部に配置 */
   padding: 8px 0;
   line-height: 1;
 }
 
+/* ページネーションの各ドット（bullet）の間隔を調整 */
+/* これをしないと、ドット同士がくっついて見づらくなる */
 .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet {
-  margin: 0 3px;
+  margin: 0 3px; /* 左右の間隔を3pxに */
 }
 
 /* ==========================
     円形のページネーションを作成
   ========================== */
+
+/* ページネーションを円形デザインに変更 */
 .circle-pagination {
-  position: relative;
+  position: relative; /* 位置調整用 */
   width: 25px;
-  height: inherit;
+  height: inherit; /* 親要素の高さを継承 */
   z-index: 1;
   background-color: #fff;
   text-align: center;
-  cursor: pointer;
-  opacity: 1;
-  display: inline-block;
-  outline: none;
+  cursor: pointer; /* クリックできることを示す */
+  opacity: 1; /* 初期状態は完全に表示 */
+  display: inline-block; /* インラインブロックで横並びに */
+  outline: none; /* フォーカス時の枠線を消す */
 }
 
+/* ページネーション内部のスタイル（数字やアイコンの中央配置） */
 .circle-pagination .circle-pagination__inner {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #bfbfbf;
-  font-size: 12px;
-  font-weight: 500;
-  position: relative;
+  align-items: center;  /* 縦方向の中央配置 */
+  justify-content: center; /* 横方向の中央配置 */
+  color: #bfbfbf;  /* デフォルトはグレー */
+  font-size: 12px; /* 文字サイズを小さめに */
+  font-weight: 500; /* 文字の太さを少し強調 */
+  position: relative; /* 内部要素の位置調整用 */
 }
 
+/* 円形ページネーション内のSVG（アニメーション用の円） */
 .circle-pagination__inner svg {
-  transform: rotate(-90deg);
-  position: absolute;
+  transform: rotate(-90deg); /* 上部から円のアニメーションを開始 */
+  position: absolute; /* 中心に配置するため */
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) rotate(-90deg);
+  transform: translate(-50%, -50%) rotate(-90deg); /* 真ん中に配置 */
 }
 
+/* 円の線のスタイル（アニメーション） */
 .circle-pagination__inner circle {
-  fill: transparent;
-  stroke: blue;
-  stroke-width: 1.5;
-  animation: circle 5s linear forwards;
+  fill: transparent; /* 塗りつぶしなし */
+  stroke: blue; /* 円の線の色を青に */
+  stroke-width: 1.5; /* 線の太さ */
+  animation: circle 5s linear forwards; /* 5秒かけて円を描画 */
 }
 
+/* 円のアニメーション（0から100%まで円を描く） */
 @keyframes circle {
   0% {
-    stroke-dasharray: 0 69;
+    stroke-dasharray: 0 69; /* 最初は円の線を見えなくする */
   }
 
   99.9%,
   to {
-    stroke-dasharray: 69 69;
+    stroke-dasharray: 69 69; /* 最後に円を完全に描く */
   }
 }
 
+/* アクティブなページネーションの色を変更（選択中のスライド） */
 .swiper-pagination-bullet.swiper-pagination-bullet-active .circle-pagination__inner {
-  color: blue;
+  color: blue; /* アクティブ時のテキストカラーを青に */
 }
 
+/* 非アクティブ時はSVG（円アニメーション）を非表示 */
 .circle-pagination:not(.swiper-pagination-bullet-active) .circle-pagination__inner svg {
-  /* 非アクティブ時なサークルのsvgは非表示に */
   display: none;
 }
