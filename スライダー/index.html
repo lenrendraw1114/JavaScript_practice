@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swiperのページネーションにサークルアニメーション</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+
+    <main>
+      <!-- Swiper -->
+      <div class="inner">
+        <!-- Swiper部分 -->
+        <div class="wrapper">
+          <div class="swiper circlePaginationSlider swiper-fade swiper-initialized swiper-horizontal swiper-watch-progress swiper-backface-hidden">
+              <div class="swiper-wrapper" id="swiper-wrapper-11110965fb7c521004" aria-live="off" style="transition-duration: 0ms; transition-delay: 0ms;">
+                <div class="swiper-slide swiper-slide-next" role="group" aria-label="3 / 4" data-swiper-slide-index="2" style="width: 468px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                  <img src="./images/08.jpg" alt="サンプル画像">
+                </div>
+                <div class="swiper-slide" role="group" aria-label="4 / 4" data-swiper-slide-index="3" style="width: 468px; opacity: 1; transform: translate3d(-468px, 0px, 0px); transition-duration: 0ms;">
+                  <img src="./images/09.jpg" alt="サンプル画像">
+                </div>
+                <div class="swiper-slide swiper-slide-prev" role="group" aria-label="1 / 4" data-swiper-slide-index="0" style="width: 468px; opacity: 1; transform: translate3d(-936px, 0px, 0px); transition-duration: 0ms;">
+                    <img src="./images/06.jpg" alt="サンプル画像">
+                </div>
+                <div class="swiper-slide swiper-slide-visible swiper-slide-active" role="group" aria-label="2 / 4" data-swiper-slide-index="1" style="width: 468px; opacity: 1; transform: translate3d(-1404px, 0px, 0px); transition-duration: 0ms;">
+                  <img src="./images/07.jpg" alt="サンプル画像">
+                </div>
+              </div>
+            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+          </div>
+          <!-- Swiperのページネーション部分 -->
+          <div class="swiper-pagination js-swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal">
+            <div class="swiper-pagination-bullet circle-pagination" tabindex="0">
+              <div class="circle-pagination__inner">
+                <svg width="25" height="25">
+                  <circle cx="12.5" cy="12.5" r="11">
+                  </circle>
+                </svg>01
+              </div>
+            </div>
+            <div class="swiper-pagination-bullet circle-pagination swiper-pagination-bullet-active" tabindex="0" aria-current="true">
+              <div class="circle-pagination__inner">
+                <svg width="25" height="25">
+                  <circle cx="12.5" cy="12.5" r="11">
+                  </circle>
+                </svg>02
+              </div>
+            </div>
+            <div class="swiper-pagination-bullet circle-pagination" tabindex="0">
+              <div class="circle-pagination__inner">
+                <svg width="25" height="25">
+                  <circle cx="12.5" cy="12.5" r="11">
+                  </circle>
+                </svg>03
+              </div>
+            </div>
+            <div class="swiper-pagination-bullet circle-pagination" tabindex="0">
+              <div class="circle-pagination__inner">
+                <svg width="25" height="25">
+                  <circle cx="12.5" cy="12.5" r="11">
+                  </circle>
+                </svg>04
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+  <!-- カスタムJS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script src="./script.js"></script>
+
+  </body>
+</html>
