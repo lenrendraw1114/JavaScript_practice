@@ -19,7 +19,7 @@ const circlePaginationSwiper = new Swiper('.circlePaginationSlider', {
     pagination: {
         el: '.js-swiper-pagination', // ページネーションの要素を指定
         clickable: true, // ページネーションをクリック可能にする
-        renderBullet: function (index, className) { // ページネーションのカスタマイズ
+        renderBullet: (index, className) => { // ページネーションのカスタマイズ
             let pageNumber = index + 1; // インデックスを1から始まるように調整
             return (
                 '<div class="' + className + ' circle-pagination' + '"><div class="circle-pagination__inner"><svg width="' + paginationBulletWidth + '" height="' + paginationBulletHeight + '"><circle cx="' + (paginationBulletWidth / 2) + '" cy="' + (paginationBulletHeight / 2) + '" r="' + circleRadius + '"></circle></svg>' + '0' + pageNumber + '</div></div>'
