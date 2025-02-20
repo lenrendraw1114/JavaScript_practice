@@ -1,3 +1,8 @@
+// 各ボックス要素を取得（個別に操作可能）
+const box1 = document.querySelector(".js-box:nth-child(1)");
+const box2 = document.querySelector(".js-box:nth-child(2)");
+const box3 = document.querySelector(".js-box:nth-child(3)");
+
 // 各 .js-box 要素を初期位置（y=-100, 回転=-30度, 透明）から
 
 // 箱がポップに跳ねる＆回転するアニメーション
