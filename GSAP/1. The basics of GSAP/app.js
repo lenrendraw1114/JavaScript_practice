@@ -1,39 +1,55 @@
-// 各ボックス要素を取得（個別に操作可能）
 const box1 = document.querySelector(".js-box:nth-child(1)");
 const box2 = document.querySelector(".js-box:nth-child(2)");
 const box3 = document.querySelector(".js-box:nth-child(3)");
+const textAll = document.querySelectorAll(".js-text"); // h1とpタグにjs-textのクラスを付与して下さい。
 
-// 各 .js-box 要素を初期位置（y=-100, 回転=-30度, 透明）から
-
-// 箱がポップに跳ねる＆回転するアニメーション
-// アニメーションで y=0, 回転=0度, 透明度=1 にする
-gsap.fromTo(
-  ".js-box", // 対象の要素（複数選択可）
-  { 
-    y: -100, // Y軸方向に上へ100pxずらす（開始位置）
-    rotation: -30, // -30度回転させた状態から開始
-    opacity: 0 // 最初は透明
-  },
-  {
-    y: 0, // 最終的に元の位置に戻す
-    rotation: 0, // 回転も元に戻す
-    opacity: 1, // 透明度を完全に表示
-    duration: 1, // アニメーション時間（1秒）
-    ease: "elastic.out(1, 0.5)", // バネのような動きで戻る
-    stagger: 0.2, // 0.2秒ずつずれて順番にアニメーション実行
-  }
-);
-
-// 箱がクリックで弾けるエフェクト
-// すべての .js-box に対してクリックイベントを設定
-document.querySelectorAll(".js-box").forEach((box) => {
-  box.addEventListener("click", () => {
-    gsap.to(box, { // クリックされたボックスに対してアニメーション
-      scale: Math.random() * 2 + 1, // ランダムなサイズに拡大（1〜3倍）
-      rotation: Math.random() * 360, // 0〜360度のランダム回転
-      opacity: 0, // 完全に透明にする（消える）
-      duration: 0.8, // アニメーション時間（0.8秒）
-      ease: "back.in(1.5)", // 勢いよく縮むような動き
-    });
-  });
+// click event
+box1.addEventListener("click", () => {
+	gsap.to(box1, {
+		autoAlpha: 0,
+		duration: 2,
+	});
 });
+
+// 1. stagger
+gsap.from(textAll, {
+	autoAlpha: 0,
+	y: 50,
+	// x: "random(-100, 100. 5)", //このような書き方をする事で値をランダムにする事ができます。
+	// x: "random([-150, -100, 100, 150])",
+	duration: 0.4,
+	stagger: {
+		each: 0.6, //各アニメーションの間隔を指定します。
+		// from: "random", //最初のアニメーションの間隔をランダムにします。
+	},
+});
+
+// 2. keyframes
+// gsap.to(box1, {
+// 	keyframes: [
+// 		{ duration: 0.3, x: 100 },
+// 		{ duration: 0.3, y: 100 },
+// 		{ duration: 0.3, x: 200 },
+// 	],
+// });
+
+// 3. set some values
+// gsap.set(box1, {
+// 	x: 100,
+// 	y: 100,
+// 	scale: 2,
+// });
+
+// 4. timeline
+// const TL = gsap.timeline({
+// 	defaults: {
+// 		duration: 0.5,
+// 		y: 30,
+// 	},
+// });
+
+// TL.from(box1, { autoAlpha: 0 })
+// 	.from(box2, { autoAlpha: 0 })
+// 	.from(box3, { autoAlpha: 0 })
+// 	.from("h1", { autoAlpha: 0 })
+// 	.from("p", { autoAlpha: 0 });
